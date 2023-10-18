@@ -1,0 +1,12 @@
+.ExpandButton {
+  color: #aaa;
+  margin: 0.5rem;
+}
+.ArticleDrawer {
+  background-color: #eee;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.ArticleDrawer:hover {
+  background-color: #ddd;
+}

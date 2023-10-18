@@ -45,18 +45,18 @@ function App() {
             <span>subs</span>
           </div>
         </div>
-        <div className="Article">
-          <div className="ArticlesDrawer">
-            <ArticlesDrawer />
+        <div className="WhiteBox">
+          <div className="Article">
+            <div className="ArticleDate">
+              {formatDateToCustomString(articles[0].date)}
+            </div>
+            <div className="ArticleTitle">{articles[0].title}</div>
+            <div
+              className="ArticleText"
+              dangerouslySetInnerHTML={{ __html: articles[0].content }}
+            ></div>
           </div>
-          <div className="ArticleDate">
-            {formatDateToCustomString(articles[0].date)}
-          </div>
-          <div className="ArticleTitle">{articles[0].title}</div>
-          <div
-            className="ArticleText"
-            dangerouslySetInnerHTML={{ __html: articles[0].content }}
-          ></div>
+          <ArticlesDrawer />
         </div>
       </div>
     </div>

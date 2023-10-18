@@ -10,30 +10,19 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import './ArticleDrawer.css';
 
 export default function ArticlesDrawer() {
   const [state, setState] = React.useState(false);
 
-  const toggleDrawer =
-    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
-      ) {
-        return;
-      }
+  const toggleDrawer = (open: boolean) => {
+    console.log('toggleDrawer', open);
 
-      setState(open);
-    };
+    setState(open);
+  };
 
   const list = () => (
-    <Box
-      sx={{ width: 250 }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
+    <Box sx={{ width: 250 }} role="presentation">
       <List>
         <span> Recent Posts </span>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -59,11 +48,11 @@ export default function ArticlesDrawer() {
   );
 
   return (
-    <div>
+    <div className="ArticleDrawer" onClick={() => toggleDrawer(!state)}>
       {/* {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => ( */}
       <React.Fragment key="right">
-        <Button onClick={toggleDrawer(true)}>{'<<'}</Button>
-        <Drawer anchor={'right'} open={state} onClose={toggleDrawer(false)}>
+        <div className="ExpandButton">{'<<'}</div>
+        <Drawer anchor={'right'} open={state}>
           {list()}
         </Drawer>
       </React.Fragment>
