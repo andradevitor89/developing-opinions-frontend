@@ -38,6 +38,12 @@ body {
   border-top: 1px solid #f2f2f2;
   justify-content: space-between;
 }
+
+.Tabs {
+  display: flex;
+  align-items: center;
+}
+
 .Menubar .Item {
   margin-right: 1rem;
   color: #6b6b6b;
@@ -45,6 +51,9 @@ body {
 
 .Search {
   margin-right: 2rem;
+  border-radius: 0.6rem;
+  border: 1px solid #aaa;
+  padding: 0.4rem;
 }
 
 .Article {

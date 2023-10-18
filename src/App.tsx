@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import getArticles from './get-articles';
 import ArticlesDrawer from './ArticleDrawer';
+import { Divider } from '@mui/material';
+
 function formatDateToCustomString(date: Date) {
   const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   const months = [
@@ -36,8 +38,17 @@ function App() {
           <p className="Subtitle">Developing opinions</p>
         </div>
         <div className="Menubar">
-          <div>
+          <div className="Tabs">
             <span className="Item">Blog</span>
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              flexItem
+              sx={{
+                height: '2rem',
+                marginRight: '1rem',
+              }}
+            />
             <span className="Item">Archives</span>
           </div>
           <div>
