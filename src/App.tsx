@@ -46,7 +46,7 @@ function App() {
           </div>
         </div>
         <div className="Article">
-          <div>
+          <div className="ArticlesDrawer">
             <ArticlesDrawer />
           </div>
           <div className="ArticleDate">

@@ -11,8 +11,6 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
-
 export default function ArticlesDrawer() {
   const [state, setState] = React.useState(false);
 
@@ -37,29 +35,25 @@ export default function ArticlesDrawer() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        <span> Recent Posts </span>
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
-        ))} */}
+        ))}
       </List>
       <Divider />
       <List>
-        {/* {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        <span> Github Repos </span>
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
-        ))} */}
+        ))}
       </List>
     </Box>
   );
