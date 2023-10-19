@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <div className="CenterContainer">
         <div className="Header">
-          <p className="Title">Jimmy Brek-McKye</p>
+          <p className="Title">Jimmy Breck-McKye</p>
           <p className="Subtitle">Developing opinions</p>
         </div>
         <div className="Menubar">

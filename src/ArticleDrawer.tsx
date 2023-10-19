@@ -1,9 +1,6 @@
+import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import * as React from 'react';
 import './ArticleDrawer.css';
 import getArticles from './get-articles';
@@ -20,20 +17,12 @@ export default function ArticlesDrawer() {
   };
 
   const list = () => (
-    <Box sx={{ width: 250 }} role="presentation">
-      <List>
-        <p className="DrawerTitle"> Recent Posts </p>
-        {articles.slice(1).map((article) => (
-          <ListItem key={article.title} disablePadding>
-            <ListItemButton>
-              <ListItemText
-                primary={article.title}
-                sx={{ textDecoration: 'underline' }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+    <Box sx={{ width: 250, padding: '1rem 2rem' }} role="presentation">
+      <p className="DrawerTitle"> Recent Posts </p>
+      <Divider></Divider>
+      {articles.slice(1).map((article) => (
+        <p className="DrawerItem">{article.title}</p>
+      ))}
     </Box>
   );
 
