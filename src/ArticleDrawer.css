@@ -10,3 +10,11 @@
 .ArticleDrawer:hover {
   background-color: #ddd;
 }
+
+.DrawerTitle {
+  font-size: calc(8px + 2vmin);
+  color: #222;
+  font-weight: bold;
+  text-align: left;
+  margin: 8px 16px;
+}

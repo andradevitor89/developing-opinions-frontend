@@ -32,9 +32,9 @@ body {
 }
 
 .Menubar {
-  background: linear-gradient(#e0e0e0, #cccccc, #b0b0b0);
+  background: linear-gradient(#ebeaea, #dedddd, #c9c8c8);
   display: flex;
-  padding: 1rem 4rem;
+  padding: 0.5rem 4rem;
   border-top: 1px solid #f2f2f2;
   justify-content: space-between;
 }
@@ -83,7 +83,22 @@ body {
 .ArticleText {
   line-height: 1.5;
 }
-
+.Divider {
+  border-top: 1px dashed #00000039;
+  margin: 1rem 0;
+}
 .Article > div {
   margin-top: 2rem;
+}
+
+.RssIcon {
+  cursor: pointer;
+  filter: invert(93%) sepia(0%) saturate(37%) hue-rotate(220deg) brightness(91%)
+    contrast(80%);
+  transition: filter 0.3s;
+}
+
+.RssIcon:hover {
+  filter: invert(73%) sepia(0%) saturate(295%) hue-rotate(139deg)
+    brightness(89%) contrast(91%);
 }

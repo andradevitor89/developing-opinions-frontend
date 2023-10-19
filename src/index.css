@@ -15,3 +15,10 @@ code {
 p {
   margin: 0;
 }
+
+.RowCenter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
