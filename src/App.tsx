@@ -7,6 +7,7 @@ import { getArticlesQuery } from './hooks/getArticlesQuery';
 import { useArticleIdInUrl } from './hooks/useArticleIdInUrl';
 import { Menubar } from './components/Menubar';
 import { Header } from './components/Header';
+import { Footer } from './components/footer/Footer';
 
 function App() {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function App() {
         <Header></Header>
         <Menubar></Menubar>
         <Main />
+        <Footer />
       </div>
     </div>
   );
