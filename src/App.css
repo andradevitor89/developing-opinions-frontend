@@ -102,3 +102,8 @@ body {
   filter: invert(73%) sepia(0%) saturate(295%) hue-rotate(139deg)
     brightness(89%) contrast(91%);
 }
+
+.ArticleText img {
+  margin: 5rem 0;
+  width: 1000px;
+}
