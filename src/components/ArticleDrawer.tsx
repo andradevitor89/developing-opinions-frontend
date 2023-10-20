@@ -4,9 +4,9 @@ import Drawer from '@mui/material/Drawer';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ArticleDrawer.css';
-import IArticle from './IArticle';
-import Api from './api';
-import { useArticleIdInUrl } from './hooks';
+import IArticle from '../interfaces/IArticle';
+import Api from '../api';
+import { useArticleIdInUrl } from '../hooks';
 
 export default function ArticlesDrawer() {
   const [state, setState] = React.useState(false);
