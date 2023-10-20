@@ -7,7 +7,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
 }
 .CenterContainer {
   background-color: #333333;
@@ -22,13 +21,11 @@ body {
   text-align: left;
   padding: 4rem;
   letter-spacing: -0.05rem;
+  color: white;
 }
 .Header .Subtitle {
   font-size: calc(8px + 2vmin);
   opacity: 0.5;
-}
-.Header .Title {
-  font-size: calc(20px + 4vmin);
 }
 
 .Menubar {
@@ -57,7 +54,6 @@ body {
 }
 
 .Article {
-  background: white;
   min-height: 100vh;
   color: black;
   padding: 1rem 4rem;
@@ -67,6 +63,7 @@ body {
 }
 
 .WhiteBox {
+  background: white;
   display: flex;
 }
 

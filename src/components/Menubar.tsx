@@ -1,11 +1,19 @@
 import { Divider } from '@mui/material';
 import RssIcon from '../rss.svg';
+import { useNavigate } from 'react-router-dom';
 
 export function Menubar() {
+  const navigate = useNavigate();
+
   return (
     <div className="Menubar">
       <div className="Tabs">
-        <span className="Item">Blog</span>
+        <span
+          className="Item cursor-pointer"
+          onClick={() => navigate('/')}
+        >
+          Blog
+        </span>
         <Divider
           orientation="vertical"
           variant="middle"
@@ -18,7 +26,10 @@ export function Menubar() {
         <span className="Item">Archives</span>
       </div>
       <div className="RowCenter">
-        <input className="Search" placeholder="Search"></input>
+        <input
+          className="Search"
+          placeholder="Search"
+        ></input>
         <div>
           <img
             width={20}
