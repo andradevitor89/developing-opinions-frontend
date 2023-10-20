@@ -4,7 +4,8 @@ import Drawer from '@mui/material/Drawer';
 import * as React from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { getArticlesQuery, useArticleIdInUrl } from '../hooks';
+import { getArticlesQuery } from '../hooks/getArticlesQuery';
+import { useArticleIdInUrl } from '../hooks/useArticleIdInUrl';
 import IArticle from '../interfaces/IArticle';
 import './ArticleDrawer.css';
 

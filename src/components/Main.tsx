@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
 import { useQuery } from 'react-query';
-import ArticlesDrawer from './components/ArticleDrawer';
-import { getArticlesQuery, useArticleIdInUrl } from './hooks';
-import IArticle from './interfaces/IArticle';
-import { formatDateToCustomString } from './utils';
+import ArticlesDrawer from './ArticleDrawer';
+import { getArticlesQuery } from '../hooks/getArticlesQuery';
+import { useArticleIdInUrl } from '../hooks/useArticleIdInUrl';
+import IArticle from '../interfaces/IArticle';
+import { formatDateToCustomString } from '../utils';
 
 export function Main() {
   const { data } = useQuery('articles', getArticlesQuery);
