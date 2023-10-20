@@ -1,32 +1,22 @@
 import { Divider } from '@mui/material';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
-import { getArticlesQuery, useArticleIdInUrl } from './hooks';
-import IArticle from './interfaces/IArticle';
-import RssIcon from './rss.svg';
 import { Main } from './Main';
+import { getArticlesQuery, useArticleIdInUrl } from './hooks';
+import RssIcon from './rss.svg';
 
 function App() {
-  const [articles, setArticles] = useState(new Array<IArticle>());
   const navigate = useNavigate();
-
   const { data } = useQuery('articles', getArticlesQuery);
-
-  useEffect(() => {
-    if (data) {
-      setArticles(data);
-    }
-  }, [data]);
-
   const urlId = useArticleIdInUrl();
 
   useEffect(() => {
-    if (articles.length && urlId === undefined) {
-      navigate(`/${articles[0].id}`);
+    if (data?.length && urlId === undefined) {
+      navigate(`/${data[0].id}`);
     }
-  }, [articles, navigate, urlId]);
+  }, [data, navigate, urlId]);
 
   return (
     <div className="App">
