@@ -3,11 +3,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
-import ArticlesDrawer from './components/ArticleDrawer';
 import { getArticlesQuery, useArticleIdInUrl } from './hooks';
 import IArticle from './interfaces/IArticle';
 import RssIcon from './rss.svg';
-import { formatDateToCustomString } from './utils';
+import { Main } from './Main';
 
 function App() {
   const [articles, setArticles] = useState(new Array<IArticle>());
@@ -28,12 +27,6 @@ function App() {
       navigate(`/${articles[0].id}`);
     }
   }, [articles, navigate, urlId]);
-
-  const displayedArticle = useMemo(() => {
-    if (articles.length && urlId !== undefined) {
-      return articles.find((a) => a.id === urlId);
-    }
-  }, [articles, urlId]);
 
   return (
     <div className="App">
@@ -68,22 +61,7 @@ function App() {
             </div>
           </div>
         </div>
-        {displayedArticle && (
-          <div className="WhiteBox">
-            <div className="Article">
-              <div className="ArticleDate">
-                {formatDateToCustomString(displayedArticle.date)}
-              </div>
-              <div className="ArticleTitle">{displayedArticle.title}</div>
-              <div className="Divider"></div>
-              <div
-                className="ArticleText"
-                dangerouslySetInnerHTML={{ __html: displayedArticle.content }}
-              ></div>
-            </div>
-            <ArticlesDrawer />
-          </div>
-        )}
+        <Main />
       </div>
     </div>
   );
