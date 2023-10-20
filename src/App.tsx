@@ -1,17 +1,17 @@
 import { Divider } from '@mui/material';
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 import ArticlesDrawer from './ArticleDrawer';
-import RssIcon from './rss.svg';
-import { useEffect, useMemo, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import IArticle from './IArticle';
 import Api from './api';
+import { useArticleIdInUrl } from './hooks';
+import RssIcon from './rss.svg';
 import { formatDateToCustomString } from './utils';
 
 function App() {
   const [articles, setArticles] = useState(new Array<IArticle>());
   const navigate = useNavigate();
-  const params = useParams();
 
   /**
    * Maps the articles to the state
@@ -27,19 +27,17 @@ function App() {
     });
   }, []);
 
-  const urlId = useMemo(() => {
-    return params.id;
-  }, [params]);
+  const urlId = useArticleIdInUrl();
 
   useEffect(() => {
-    if (articles.length) {
+    if (articles.length && urlId === undefined) {
       navigate(`/${articles[0].id}`);
     }
-  }, [articles, navigate]);
+  }, [articles, navigate, urlId]);
 
   const displayedArticle = useMemo(() => {
     if (articles.length && urlId !== undefined) {
-      return articles.find((a) => a.id === Number(urlId));
+      return articles.find((a) => a.id === urlId);
     }
   }, [articles, urlId]);
 

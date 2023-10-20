@@ -2,13 +2,17 @@ import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ArticleDrawer.css';
 import IArticle from './IArticle';
 import Api from './api';
+import { useArticleIdInUrl } from './hooks';
 
 export default function ArticlesDrawer() {
   const [state, setState] = React.useState(false);
   const [articles, setArticles] = React.useState(new Array<IArticle>());
+  const navigate = useNavigate();
+  const urlId = useArticleIdInUrl();
 
   React.useEffect(() => {
     new Api().getArticles().then((res) => {
@@ -30,21 +34,27 @@ export default function ArticlesDrawer() {
       <Box sx={{ width: 250, padding: '1rem 2rem' }} role="presentation">
         <p className="DrawerTitle"> Recent Posts </p>
         <Divider></Divider>
-        {articles.slice(1).map((article) => (
-          <p className="DrawerItem">{article.title}</p>
-        ))}
+        {articles
+          .filter((a) => a.id !== urlId)
+          .map((article) => (
+            <p
+              key={article.id}
+              className="DrawerItem"
+              onClick={() => navigate(`/${article.id}`)}
+            >
+              {article.title}
+            </p>
+          ))}
       </Box>
     );
   };
 
   return (
     <div className="ArticleDrawer" onClick={() => toggleDrawer(!state)}>
-      <React.Fragment key="right">
-        <div className="ExpandButton">{'<<'}</div>
-        <Drawer anchor={'right'} open={state}>
-          {list()}
-        </Drawer>
-      </React.Fragment>
+      <div className="ExpandButton">{'<<'}</div>
+      <Drawer anchor={'right'} open={state}>
+        {list()}
+      </Drawer>
     </div>
   );
 }
