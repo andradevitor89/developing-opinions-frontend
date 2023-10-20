@@ -2,11 +2,11 @@ import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import * as React from 'react';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import './ArticleDrawer.css';
+import { getArticlesQuery, useArticleIdInUrl } from '../hooks';
 import IArticle from '../interfaces/IArticle';
-import Api from '../api';
-import { useArticleIdInUrl } from '../hooks';
+import './ArticleDrawer.css';
 
 export default function ArticlesDrawer() {
   const [state, setState] = React.useState(false);
@@ -14,16 +14,13 @@ export default function ArticlesDrawer() {
   const navigate = useNavigate();
   const urlId = useArticleIdInUrl();
 
+  const { data } = useQuery('articles', getArticlesQuery);
+
   React.useEffect(() => {
-    new Api().getArticles().then((res) => {
-      setArticles(
-        res.data.map((a: IArticle) => ({
-          ...a,
-          date: new Date(a.date),
-        }))
-      );
-    });
-  }, []);
+    if (data) {
+      setArticles(data);
+    }
+  }, [data]);
 
   const toggleDrawer = (open: boolean) => {
     setState(open);

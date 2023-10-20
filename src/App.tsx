@@ -1,11 +1,11 @@
 import { Divider } from '@mui/material';
 import { useEffect, useMemo, useState } from 'react';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import ArticlesDrawer from './components/ArticleDrawer';
+import { getArticlesQuery, useArticleIdInUrl } from './hooks';
 import IArticle from './interfaces/IArticle';
-import Api from './api';
-import { useArticleIdInUrl } from './hooks';
 import RssIcon from './rss.svg';
 import { formatDateToCustomString } from './utils';
 
@@ -13,19 +13,13 @@ function App() {
   const [articles, setArticles] = useState(new Array<IArticle>());
   const navigate = useNavigate();
 
-  /**
-   * Maps the articles to the state
-   */
+  const { data } = useQuery('articles', getArticlesQuery);
+
   useEffect(() => {
-    new Api().getArticles().then((res) => {
-      setArticles(
-        res.data.map((a: IArticle) => ({
-          ...a,
-          date: new Date(a.date),
-        }))
-      );
-    });
-  }, []);
+    if (data) {
+      setArticles(data);
+    }
+  }, [data]);
 
   const urlId = useArticleIdInUrl();
 

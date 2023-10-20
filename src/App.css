@@ -107,3 +107,7 @@ body {
   margin: 5rem 0;
   width: 1000px;
 }
+.ArticleText {
+  font-size: 18.4px;
+  color: #222;
+}
