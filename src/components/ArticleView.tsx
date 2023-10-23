@@ -7,7 +7,7 @@ import { useGetArticlesQuery } from '../hooks/useGetArticlesQuery';
 const applyStyleToHtml = (html: string) => {
   return html.replace(
     /<img/g,
-    '<img class="mt-20 mb-20 w-[1000px]"'
+    '<img class="mt-20 mb-20 w-[100%]"'
   );
 };
 
