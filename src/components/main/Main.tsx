@@ -1,15 +1,12 @@
 import { useMemo } from 'react';
-import { useQuery } from 'react-query';
-import ArticlesDrawer from '../ArticleDrawer';
-import { getArticlesQuery } from '../../hooks/getArticlesQuery';
+import { useGetArticlesQuery } from '../../hooks/useGetArticlesQuery';
 import { useArticleIdInUrl } from '../../hooks/useArticleIdInUrl';
-import IArticle from '../../interfaces/IArticle';
+import ArticlesDrawer from '../ArticleDrawer';
 import { ArticleClickcableCard } from './ArticleClickcableCard';
 import { ArticleView } from './ArticleView';
 
 export function Main() {
-  const { data } = useQuery('articles', getArticlesQuery);
-  const articles = data as IArticle[] | null;
+  const { data: articles } = useGetArticlesQuery();
   const urlId = useArticleIdInUrl();
 
   const displayedArticle = useMemo(() => {
@@ -29,6 +26,7 @@ export function Main() {
         <div className=" w-full flex flex-col pt-12">
           {articles?.map((article) => (
             <ArticleClickcableCard
+              key={article.id}
               article={article}
             ></ArticleClickcableCard>
           ))}

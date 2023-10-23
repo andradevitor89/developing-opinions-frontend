@@ -1,4 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
+import IArticle from './interfaces/IArticle';
 
 export default class Api {
   api_url: string;
@@ -23,7 +24,22 @@ export default class Api {
     return this.client;
   };
 
-  getArticles = () => {
-    return this.init().get('/articles/');
+  getArticles = (): Promise<IArticle[]> => {
+    return new Promise<IArticle[]>((res, rej) => {
+      this.init()
+        .get('/articles/')
+        .then((response) =>
+          res(
+            response.data.map((a: IArticle) => ({
+              ...a,
+              date: new Date(a.date),
+            }))
+          )
+        )
+        .catch((error) => {
+          console.error(error);
+          rej([]);
+        });
+    });
   };
 }

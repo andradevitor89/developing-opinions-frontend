@@ -2,26 +2,16 @@ import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import * as React from 'react';
-import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { getArticlesQuery } from '../hooks/getArticlesQuery';
+import { useGetArticlesQuery } from '../hooks/useGetArticlesQuery';
 import { useArticleIdInUrl } from '../hooks/useArticleIdInUrl';
-import IArticle from '../interfaces/IArticle';
 import './ArticleDrawer.css';
 
 export default function ArticlesDrawer() {
   const [state, setState] = React.useState(false);
-  const [articles, setArticles] = React.useState(new Array<IArticle>());
   const navigate = useNavigate();
   const urlId = useArticleIdInUrl();
-
-  const { data } = useQuery('articles', getArticlesQuery);
-
-  React.useEffect(() => {
-    if (data) {
-      setArticles(data);
-    }
-  }, [data]);
+  const { data: articles } = useGetArticlesQuery();
 
   const toggleDrawer = (open: boolean) => {
     setState(open);
@@ -29,11 +19,14 @@ export default function ArticlesDrawer() {
 
   const list = () => {
     return (
-      <Box sx={{ width: 250, padding: '1rem 2rem' }} role="presentation">
+      <Box
+        sx={{ width: 250, padding: '1rem 2rem' }}
+        role="presentation"
+      >
         <p className="DrawerTitle"> Recent Posts </p>
         <Divider></Divider>
         {articles
-          .filter((a) => a.id !== urlId)
+          ?.filter((a) => a.id !== urlId)
           .map((article) => (
             <p
               key={article.id}
@@ -48,7 +41,10 @@ export default function ArticlesDrawer() {
   };
 
   return (
-    <div className="ArticleDrawer" onClick={() => toggleDrawer(!state)}>
+    <div
+      className="ArticleDrawer"
+      onClick={() => toggleDrawer(!state)}
+    >
       <div className="ExpandButton">{'<<'}</div>
       <Drawer anchor={'right'} open={state}>
         {list()}
