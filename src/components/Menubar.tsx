@@ -13,32 +13,52 @@ const navigateToSearch = (search: string) => {
   );
 };
 
-export function Menubar() {
+function MenubarItem({
+  label,
+  path,
+}: {
+  label: string;
+  path: string;
+}) {
   const navigate = useNavigate();
-  const [search, setSearch] = useState('');
   return (
-    <div className="Menubar">
-      <div className="Tabs">
-        <span
-          className="Item cursor-pointer"
-          onClick={() => navigate('/')}
-        >
-          Blog
-        </span>
-        <Divider
-          orientation="vertical"
-          variant="middle"
-          flexItem
-          sx={{
-            height: '2rem',
-            marginRight: '1rem',
-          }}
-        />
-        <span className="Item">Archives</span>
+    <span
+      className="cursor-pointer mr-4 text-[#6b6b6b]"
+      onClick={() => navigate(`/${path}`)}
+    >
+      {label}
+    </span>
+  );
+}
+export function Menubar() {
+  const [search, setSearch] = useState('');
+  const items = [
+    { label: 'Blog', path: 'blog' },
+    { label: 'Archives', path: 'archives' },
+  ];
+  return (
+    <div className="bg-gradient-to-b from-[#cdcdcd] via-gray-300 to-[#bfbebe] flex py-2 px-16 border-b border-gray-400 justify-between">
+      <div className="flex items-center">
+        {items?.map((item, index) => (
+          <>
+            <MenubarItem {...item} />
+            {isLastElement(index, items) && (
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                flexItem
+                sx={{
+                  height: '2rem',
+                  marginRight: '1rem',
+                }}
+              />
+            )}
+          </>
+        ))}
       </div>
-      <div className="RowCenter">
+      <div className="RowCenter flex items-center justify-center">
         <input
-          className="Search"
+          className="mr-8 rounded-lg border border-gray-300 p-1"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           onKeyUp={(e) => {
@@ -59,4 +79,10 @@ export function Menubar() {
       </div>
     </div>
   );
+}
+function isLastElement(
+  index: number,
+  items: { label: string; path: string }[]
+) {
+  return index !== items.length - 1;
 }

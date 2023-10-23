@@ -4,20 +4,13 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, 'Lato', BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, 'Lato', BlinkMacSystemFont,
+    'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 p {
   margin: 0;
-}
-
-.RowCenter {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
 }

@@ -3,20 +3,41 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query';
+import { ArticleView } from './components/ArticleView';
+import { BlogView } from './components/BlogView';
+import { ArchivesView } from './components/ArchivesView';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 const queryClient = new QueryClient();
+
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
-          <Route path="/:id" element={<App />} />
+          <Route path="/" element={<App />}>
+            <Route path="/:id" element={<ArticleView />} />
+            <Route
+              path="/blog"
+              element={<BlogView></BlogView>}
+            />
+            <Route
+              path="/archives"
+              element={<ArchivesView />}
+            />
+          </Route>
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

@@ -8,103 +8,15 @@ body {
   align-items: center;
   justify-content: center;
 }
-.CenterContainer {
-  background-color: #333333;
-  width: 100vw;
-  max-width: 1200px;
-  position: relative;
-  margin: 0 auto;
-  min-height: 100vh;
-  height: 100%;
-}
-.Header {
-  text-align: left;
-  padding: 4rem;
-  letter-spacing: -0.05rem;
-  color: white;
-}
-.Header .Subtitle {
-  font-size: calc(8px + 2vmin);
-  opacity: 0.5;
-}
-
-.Menubar {
-  background: linear-gradient(#ebeaea, #dedddd, #c9c8c8);
-  display: flex;
-  padding: 0.5rem 4rem;
-  border-bottom: 1px solid #bababa;
-  justify-content: space-between;
-}
-
-.Tabs {
-  display: flex;
-  align-items: center;
-}
-
-.Menubar .Item {
-  margin-right: 1rem;
-  color: #6b6b6b;
-}
-
-.Search {
-  margin-right: 2rem;
-  border-radius: 0.6rem;
-  border: 1px solid #aaa;
-  padding: 0.4rem;
-}
-
-.Article {
-  min-height: 100vh;
-  color: black;
-  padding: 1rem 4rem;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-}
-
-.WhiteBox {
-  background: white;
-  display: flex;
-}
-
-.ArticleDate {
-  color: #aaa;
-}
-
-.ArticleTitle {
-  font-size: calc(24px + 2vmin);
-  color: #222;
-  font-weight: bold;
-}
-
-.ArticleText {
-  line-height: 1.5;
-}
-.Divider {
-  border-top: 1px dashed #00000039;
-  margin: 1rem 0;
-}
-.Article > div {
-  margin-top: 2rem;
-}
 
 .RssIcon {
   cursor: pointer;
-  filter: invert(93%) sepia(0%) saturate(37%) hue-rotate(220deg) brightness(91%)
-    contrast(80%);
+  filter: invert(93%) sepia(0%) saturate(37%)
+    hue-rotate(220deg) brightness(91%) contrast(80%);
   transition: filter 0.3s;
 }
 
 .RssIcon:hover {
-  filter: invert(73%) sepia(0%) saturate(295%) hue-rotate(139deg)
-    brightness(89%) contrast(91%);
-}
-
-.ArticleText img {
-  margin: 5rem 0;
-  width: 1000px;
-}
-.ArticleText {
-  font-size: 18.4px;
-  color: #222;
+  filter: invert(73%) sepia(0%) saturate(295%)
+    hue-rotate(139deg) brightness(89%) contrast(91%);
 }

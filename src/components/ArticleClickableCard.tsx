@@ -1,8 +1,10 @@
-import IArticle from '../../interfaces/IArticle';
-import { formatDateToCustomString } from '../../utils';
+import clsx from 'clsx';
+import { SUBTITLE } from '../helpers/styles';
+import IArticle from '../interfaces/IArticle';
+import { formatDateToCustomString } from '../utils';
 import { useNavigate } from 'react-router-dom';
 
-export function ArticleClickcableCard({
+export function ArticleClickableCard({
   article,
 }: {
   article: IArticle;
@@ -14,7 +16,7 @@ export function ArticleClickcableCard({
       <div className="text-[#aaa] mb-4">
         {formatDateToCustomString(article.date)}
       </div>
-      <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-4">
+      <div className={clsx(SUBTITLE, 'mb-4')}>
         {article.title}
       </div>
       <div>
