@@ -39,7 +39,9 @@ export default function ArticlesDrawer() {
             <p
               key={article.id}
               className="text-left cursor-pointer mt-4 underline"
-              onClick={() => navigate(`/${article.id}`)}
+              onClick={() =>
+                navigate(`/article/${article.id}`)
+              }
             >
               {article.title}
             </p>

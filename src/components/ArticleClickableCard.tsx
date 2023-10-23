@@ -21,7 +21,7 @@ export function ArticleClickableCard({
       </div>
       <div>
         <button
-          onClick={() => navigate(`/${article.id}`)}
+          onClick={() => navigate(`/article/${article.id}`)}
           className="text-[#666] bg-[#ebebeb] py-2 px-4 transition-bg transition-text duration-300 hover:bg-[#0181eb] hover:text-white"
         >
           Read on →

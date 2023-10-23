@@ -28,7 +28,10 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route path="/:id" element={<ArticleView />} />
+            <Route
+              path="/article/:id"
+              element={<ArticleView />}
+            />
             <Route
               path="/blog"
               element={<BlogView></BlogView>}
