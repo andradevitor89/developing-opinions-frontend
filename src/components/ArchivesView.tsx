@@ -4,6 +4,7 @@ import { useGetArticlesQuery } from '../hooks/useGetArticlesQuery';
 import IArticle from '../interfaces/IArticle';
 import { DashedDivider } from './DashedDivider';
 import { isNotLastElement } from './isLastElement';
+import { Link } from 'react-router-dom';
 
 export function ArchivesView() {
   const { data } = useGetArticlesQuery();
@@ -64,7 +65,12 @@ export function ArchivesView() {
                                       SUBTITLE
                                     )}
                                   >
-                                    {article.title}
+                                    <Link
+                                      className="transition-text duration-300 hover:text-[#0181eb]"
+                                      to={`/article/${article.id}`}
+                                    >
+                                      {article.title}
+                                    </Link>
                                   </span>
                                   <span>
                                     Posted in videogames,

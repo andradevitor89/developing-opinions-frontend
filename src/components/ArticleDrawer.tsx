@@ -1,16 +1,15 @@
 import { Divider } from '@mui/material';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useGetArticlesQuery } from '../hooks/useGetArticlesQuery';
-import { useArticleIdInUrl } from '../hooks/useArticleIdInUrl';
 import clsx from 'clsx';
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 import { SUBTITLE } from '../helpers/styles';
+import { useArticleIdInUrl } from '../hooks/useArticleIdInUrl';
+import { useGetArticlesQuery } from '../hooks/useGetArticlesQuery';
 
 export default function ArticlesDrawer() {
   const [state, setState] = React.useState(false);
-  const navigate = useNavigate();
   const urlId = useArticleIdInUrl();
   const { data: articles } = useGetArticlesQuery();
 
@@ -24,28 +23,28 @@ export default function ArticlesDrawer() {
         sx={{ width: 250, padding: '1rem 2rem' }}
         role="presentation"
       >
-        <p
-          className={clsx(
-            SUBTITLE,
-            'font-bold text-[#222] text-left mb-2'
-          )}
-        >
-          Recent Posts
-        </p>
-        <Divider></Divider>
-        {articles
-          ?.filter((a) => a.id !== urlId)
-          .map((article) => (
-            <p
-              key={article.id}
-              className="text-left cursor-pointer mt-4 underline"
-              onClick={() =>
-                navigate(`/article/${article.id}`)
-              }
-            >
-              {article.title}
-            </p>
-          ))}
+        <div className="flex flex-col items-start">
+          <p
+            className={clsx(
+              SUBTITLE,
+              'font-bold text-[#222] text-left mb-2'
+            )}
+          >
+            Recent Posts
+          </p>
+          <Divider></Divider>
+          {articles
+            ?.filter((a) => a.id !== urlId)
+            .map((article) => (
+              <Link
+                key={article.id}
+                className="text-left cursor-pointer mt-4 underline transition-text duration-300 hover:text-[#0181eb]"
+                to={`/article/${article.id}`}
+              >
+                {article.title}
+              </Link>
+            ))}
+        </div>
       </Box>
     );
   };
