@@ -4,7 +4,12 @@ import Drawer from '@mui/material/Drawer';
 import clsx from 'clsx';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { SUBTITLE } from '../helpers/styles';
+import {
+  DEFAULT,
+  LARGE,
+  MEDIUM,
+  SUBTITLE,
+} from '../helpers/styles';
 import { useArticleIdInUrl } from '../hooks/useArticleIdInUrl';
 import { useGetArticlesQuery } from '../hooks/useGetArticlesQuery';
 
@@ -19,45 +24,64 @@ export default function ArticlesDrawer() {
 
   const list = () => {
     return (
-      <Box
-        sx={{ width: 250, padding: '1rem 2rem' }}
-        role="presentation"
+      <div
+        className={clsx(
+          'flex flex-col items-start min-w-[265px]'
+        )}
       >
-        <div className="flex flex-col items-start">
-          <p
-            className={clsx(
-              SUBTITLE,
-              'font-bold text-[#222] text-left mb-2'
-            )}
-          >
-            Recent Posts
-          </p>
-          <Divider></Divider>
-          {articles
-            ?.filter((a) => a.id !== urlId)
-            .map((article) => (
-              <Link
-                key={article.id}
-                className="text-left cursor-pointer mt-4 underline transition-text duration-300 hover:text-[#0181eb]"
-                to={`/article/${article.id}`}
-              >
-                {article.title}
-              </Link>
-            ))}
-        </div>
-      </Box>
+        <p
+          className={clsx(
+            LARGE,
+            'font-bold text-[#222] text-left mb-2'
+          )}
+        >
+          Recent Posts
+        </p>
+        <Divider></Divider>
+        {articles
+          ?.filter((a) => a.id !== urlId)
+          .map((article) => (
+            <Link
+              key={article.id}
+              className="text-left cursor-pointer mt-4 underline transition-text duration-300 hover:text-[#0181eb]"
+              to={`/article/${article.id}`}
+            >
+              {article.title}
+            </Link>
+          ))}
+      </div>
     );
   };
 
   return (
     <div
-      className=" bg-[#eee] cursor-pointer transition-bg duration-300 hover:bg-[#ddd]"
-      onClick={() => toggleDrawer(!state)}
+      className={clsx(
+        'bg-[#e0e0e0] ',
+        !state &&
+          'transition-bg duration-300 hover:bg-[#ccc] cursor-pointer',
+        state && 'text-left'
+      )}
+      onClick={handleClick({ wasClickOnButton: false })}
     >
-      <div className="m-2 text-[#aaa]">{'<<'}</div>
-      <Drawer anchor={'right'} open={state}>
-        {list()}
-      </Drawer>
+      <div
+        className={clsx(
+          'text-[#aaa]  w-[40px] text-center cursor-pointer ',
+          state ? 'rounded-r-lg bg-white' : ''
+        )}
+        onClick={handleClick({ wasClickOnButton: true })}
+      >
+        {state ? '>>' : '<<'}
+      </div>
+      {state && <div className="py-4 px-8">{list()}</div>}
     </div>
   );
+
+  function handleClick({
+    wasClickOnButton = false,
+  }): React.MouseEventHandler<HTMLDivElement> | undefined {
+    return () => {
+      if (wasClickOnButton || state === false)
+        toggleDrawer(!state);
+    };
+  }
 }
