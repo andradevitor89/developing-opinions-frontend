@@ -4,4 +4,6 @@ export const SUBTITLE =
   'text-md sm:text-lg md:text-xl lg:text-2xl xl:text-3xl';
 export const LARGE =
   'text-xs sm:text-md md:text-lg lg:text-1xl xl:text-2xl';
+export const MEDIUM =
+  'text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl';
 export const DEFAULT = 'text-sm sm:text-md  lg:text-lg ';
