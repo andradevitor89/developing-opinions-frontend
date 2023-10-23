@@ -3,6 +3,7 @@ import RssIcon from '../rss.svg';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { openNewTab } from '../helpers/openNewTab';
+import { isNotLastElement } from './isLastElement';
 
 const navigateToSearch = (search: string) => {
   const BASE_URL = 'https://www.breck-mckye.com';
@@ -42,7 +43,7 @@ export function Menubar() {
         {items?.map((item, index) => (
           <>
             <MenubarItem {...item} />
-            {isLastElement(index, items) && (
+            {isNotLastElement(index, items) && (
               <Divider
                 orientation="vertical"
                 variant="middle"
@@ -79,10 +80,4 @@ export function Menubar() {
       </div>
     </div>
   );
-}
-function isLastElement(
-  index: number,
-  items: { label: string; path: string }[]
-) {
-  return index !== items.length - 1;
 }

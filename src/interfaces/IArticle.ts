@@ -3,4 +3,5 @@ export default interface IArticle {
   title: string;
   content: string;
   date: Date;
+  formattedDates: { full: string; short: string };
 }

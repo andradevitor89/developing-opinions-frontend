@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import IArticle from './interfaces/IArticle';
+import { formatDateToCustomString } from './utils';
 
 export default class Api {
   api_url: string;
@@ -33,6 +34,15 @@ export default class Api {
             response.data.map((a: IArticle) => ({
               ...a,
               date: new Date(a.date),
+              formattedDates: {
+                full: formatDateToCustomString(
+                  new Date(a.date)
+                ),
+                short: formatDateToCustomString(
+                  new Date(a.date),
+                  { short: true }
+                ),
+              },
             }))
           )
         )

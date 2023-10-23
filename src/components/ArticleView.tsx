@@ -1,9 +1,8 @@
+import clsx from 'clsx';
 import { useMemo } from 'react';
+import { TITLE } from '../helpers/styles';
 import { useArticleIdInUrl } from '../hooks/useArticleIdInUrl';
 import { useGetArticlesQuery } from '../hooks/useGetArticlesQuery';
-import { formatDateToCustomString } from '../utils';
-import { SUBTITLE, TITLE } from '../helpers/styles';
-import clsx from 'clsx';
 
 const applyStyleToHtml = (html: string) => {
   return html.replace(
@@ -27,7 +26,7 @@ export function ArticleView() {
   return (
     <div className="min-h-[100vh] text-black py-4 px-16 text-left flex flex-col">
       <div className="mt-8 text-[#aaa]">
-        {formatDateToCustomString(displayedArticle.date)}
+        {displayedArticle.formattedDates.full}
       </div>
       <div
         className={clsx(

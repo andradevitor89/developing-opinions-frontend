@@ -1,8 +1,8 @@
 import clsx from 'clsx';
+import { useNavigate } from 'react-router-dom';
 import { SUBTITLE } from '../helpers/styles';
 import IArticle from '../interfaces/IArticle';
-import { formatDateToCustomString } from '../utils';
-import { useNavigate } from 'react-router-dom';
+import { DashedDivider } from './DashedDivider';
 
 export function ArticleClickableCard({
   article,
@@ -14,7 +14,7 @@ export function ArticleClickableCard({
   return (
     <div className="flex flex-col justify-start text-left mx-16">
       <div className="text-[#aaa] mb-4">
-        {formatDateToCustomString(article.date)}
+        {article.formattedDates.full}
       </div>
       <div className={clsx(SUBTITLE, 'mb-4')}>
         {article.title}
@@ -27,7 +27,7 @@ export function ArticleClickableCard({
           Read on →
         </button>
       </div>
-      <div className="border-t border-dashed border-opacity-30 my-8"></div>
+      <DashedDivider></DashedDivider>
     </div>
   );
 }
