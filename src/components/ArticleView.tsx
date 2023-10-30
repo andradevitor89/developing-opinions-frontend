@@ -1,8 +1,6 @@
 import clsx from 'clsx';
-import { useMemo } from 'react';
 import { TITLE } from '../helpers/styles';
-import { useArticleIdInUrl } from '../hooks/useArticleIdInUrl';
-import { useGetArticlesQuery } from '../hooks/useGetArticlesQuery';
+import { useGetArticleByIdQuery } from '../hooks/useGetArticlesQuery';
 
 const applyStyleToHtml = (html: string) => {
   return html.replace(
@@ -12,14 +10,8 @@ const applyStyleToHtml = (html: string) => {
 };
 
 export function ArticleView() {
-  const { data: articles } = useGetArticlesQuery();
-  const urlId = useArticleIdInUrl();
-
-  const displayedArticle = useMemo(() => {
-    if (articles?.length && urlId !== undefined) {
-      return articles.find((a) => a.id === urlId);
-    }
-  }, [articles, urlId]);
+  const { data: displayedArticle } =
+    useGetArticleByIdQuery();
 
   if (!displayedArticle) return <div></div>;
 

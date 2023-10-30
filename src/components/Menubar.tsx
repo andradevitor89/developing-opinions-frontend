@@ -41,7 +41,10 @@ export function Menubar() {
     <div className="bg-gradient-to-b from-[#cdcdcd] via-gray-300 to-[#bfbebe] flex py-2 px-16 border-b border-gray-400 justify-between">
       <div className="flex items-center">
         {items?.map((item, index) => (
-          <>
+          <span
+            key={item.path}
+            className="flex items-center"
+          >
             <MenubarItem {...item} />
             {isNotLastElement(index, items) && (
               <Divider
@@ -54,7 +57,7 @@ export function Menubar() {
                 }}
               />
             )}
-          </>
+          </span>
         ))}
       </div>
       <div className="RowCenter flex items-center justify-center">
