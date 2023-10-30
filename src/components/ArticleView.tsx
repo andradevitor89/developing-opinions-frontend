@@ -10,34 +10,41 @@ const applyStyleToHtml = (html: string) => {
 };
 
 export function ArticleView() {
-  const { data: displayedArticle } =
+  const { data: displayedArticle, isLoading } =
     useGetArticleByIdQuery();
 
-  if (!displayedArticle) return <div></div>;
-
   return (
-    <div className="min-h-[100vh] text-black py-4 px-16 text-left flex flex-col">
-      <div className="mt-8 text-[#aaa]">
-        {displayedArticle.formattedDates.full}
-      </div>
-      <div
-        className={clsx(
-          TITLE,
-          'font-bold text-[#222] mt-8'
-        )}
-      >
-        {displayedArticle.title}
-      </div>
+    <div className="min-h-[100vh] w-full text-black py-4 px-16 text-left flex flex-col">
+      {isLoading && (
+        <div className="flex justify-center mt-32">
+          ... Loading
+        </div>
+      )}
+      {displayedArticle && (
+        <>
+          <div className="mt-8 text-[#aaa]">
+            {displayedArticle.formattedDates.full}
+          </div>
+          <div
+            className={clsx(
+              TITLE,
+              'font-bold text-[#222] mt-8'
+            )}
+          >
+            {displayedArticle.title}
+          </div>
 
-      <div className="border-t border-dashed border-opacity-30 mt-4"></div>
-      <div
-        className="text-[#333] text-lg mt-8"
-        dangerouslySetInnerHTML={{
-          __html: applyStyleToHtml(
-            displayedArticle.content
-          ),
-        }}
-      ></div>
+          <div className="border-t border-dashed border-opacity-30 mt-4"></div>
+          <div
+            className="text-[#333] text-lg mt-8"
+            dangerouslySetInnerHTML={{
+              __html: applyStyleToHtml(
+                displayedArticle.content
+              ),
+            }}
+          ></div>
+        </>
+      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import IArticle from './interfaces/IArticle';
+import Article from './models/Article';
 
 export default class Api {
   api_url: string;
@@ -24,14 +24,14 @@ export default class Api {
     return this.client;
   };
 
-  getArticles = (): Promise<IArticle[]> => {
-    return new Promise<IArticle[]>((res, rej) => {
+  getArticles = (): Promise<Article[]> => {
+    return new Promise<Article[]>((res, rej) => {
       this.init()
         .get('/articles/list/')
         .then((response) =>
           res(
             response.data.map(
-              (a: IArticle) => new IArticle(a)
+              (a: Article) => new Article(a)
             )
           )
         )
@@ -42,13 +42,11 @@ export default class Api {
     });
   };
 
-  getArticleById = (id: number): Promise<IArticle> => {
-    return new Promise<IArticle>((res, rej) => {
+  getArticleById = async (id: number): Promise<Article> => {
+    return new Promise<Article>((res, rej) => {
       this.init()
         .get(`/articles/${id}/`)
-        .then((response) =>
-          res(new IArticle(response.data))
-        )
+        .then((response) => res(new Article(response.data)))
         .catch((error) => {
           console.error(error);
           rej(null);

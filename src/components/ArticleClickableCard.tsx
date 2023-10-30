@@ -1,13 +1,13 @@
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
 import { SUBTITLE } from '../helpers/styles';
-import IArticle from '../interfaces/IArticle';
+import Article from '../models/Article';
 import { DashedDivider } from './DashedDivider';
 
 export function ArticleClickableCard({
   article,
 }: {
-  article: IArticle;
+  article: Article;
 }) {
   const navigate = useNavigate();
 

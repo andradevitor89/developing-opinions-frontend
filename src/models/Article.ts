@@ -1,13 +1,13 @@
 import { formatDateToCustomString } from '../utils';
 
-export default class IArticle {
+export default class Article {
   id: number;
   title: string;
   content: string;
   date: Date;
   formattedDates: { full: string; short: string };
 
-  constructor({ id, title, content, date }: IArticle) {
+  constructor({ id, title, content, date }: Article) {
     this.id = id;
     this.title = title;
     this.content = content;

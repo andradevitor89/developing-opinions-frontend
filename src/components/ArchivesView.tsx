@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { SUBTITLE, TITLE } from '../helpers/styles';
 import { useGetArticlesQuery } from '../hooks/useGetArticlesQuery';
-import IArticle from '../interfaces/IArticle';
+import Article from '../models/Article';
 import { DashedDivider } from './DashedDivider';
 import { isNotLastElement } from './isLastElement';
 import { Link } from 'react-router-dom';
@@ -18,7 +18,7 @@ export function ArchivesView() {
       }
       return acc;
     },
-    {} as Record<string, IArticle[]>
+    {} as Record<string, Article[]>
   );
 
   return (
